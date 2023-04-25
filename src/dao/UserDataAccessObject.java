@@ -52,9 +52,12 @@ public class UserDataAccessObject {
             ResultSet data = sql.executeQuery();
 
             if(data != null){
-                user.setUserName(data.getString("name"));
-                user.setUserEmail(data.getString("email"));
-                user.setUserPassword(data.getString("password"));
+               while(data.next()){
+                   user.setUserId(data.getInt("id"));
+                   user.setUserName(data.getString("name"));
+                   user.setUserEmail(data.getString("email"));
+                   user.setUserPassword(data.getString("password"));
+               }
 
                 return user;
             }

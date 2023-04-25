@@ -42,27 +42,26 @@ public class Main {
                 } else {
                     System.out.println("Usuário não encontrado!");
                 }
-
-                entry.close();
                 break;
             case 3:
+                Scanner no = new Scanner(System.in);
+
                 System.out.println("Informe o nome do usuário: ");
-                String name = entry.nextLine();
+                String userName = no.nextLine();
 
                 System.out.println("Informe o email do usuário: ");
-                String email = entry.nextLine();
+                String userEmail = no.nextLine();
 
                 System.out.println("Informe a senha do usuário: ");
-                String password = entry.nextLine();
+                String userPassword = no.nextLine();
 
                 User newUser = new User();
-                newUser.setUserName(name);
-                newUser.setUserEmail(email);
-                newUser.setUserPassword(password);
+                newUser.setUserName(userName);
+                newUser.setUserEmail(userEmail);
+                newUser.setUserPassword(userPassword);
 
                 userDao.create(newUser);
                 System.out.println("Usuário adicionado com sucesso!");
-                entry.close();
                 break;
             case 4:
                 break;
@@ -70,7 +69,6 @@ public class Main {
                 break;
             case 6:
                 System.out.println("SAINDO...");
-                entry.close();
                 break;
             default:
                 System.out.println("Opção inválida!");

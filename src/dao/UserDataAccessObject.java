@@ -66,4 +66,17 @@ public class UserDataAccessObject {
         }
         return null;
     }
+
+    public void update(User user){
+        try{
+            PreparedStatement sql = this.driver.prepareStatement("UPDATE FROM users SET name = ?, email = ?, password = ? WHERE id = ?");
+            sql.setString(1, user.getUserName());
+            sql.setString(2, user.getUserEmail());
+            sql.setString(3, user.getUserPassword());
+            sql.setInt(4, user.getUserId());
+            sql.execute();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
 }

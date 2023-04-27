@@ -64,6 +64,28 @@ public class Main {
                 System.out.println("Usuário adicionado com sucesso!");
                 break;
             case 4:
+                Scanner updateScanner = new Scanner(System.in);
+                System.out.println("As informações que não deseja atualizar digite 0:");
+
+                System.out.println("Digite o id do usuário: ");
+                int updateId = updateScanner.nextInt();
+
+                System.out.println("Digite o novo nome do usuário: ");
+                String updateName = updateScanner.nextLine();
+
+                System.out.println("Digite o novo email do usuário: ");
+                String updateEmail = updateScanner.nextLine();
+
+                System.out.println("Digite a nova senha do usuário: ");
+                String updatePassword = updateScanner.nextLine();
+
+                User updateUser = new User();
+                updateUser.setUserId(updateId);
+                updateUser.setUserName(updateName);
+                updateUser.setUserEmail(updateEmail);
+                updateUser.setUserPassword(updatePassword);
+
+                userDao.update(updateUser);
                 break;
             case 5:
                 break;

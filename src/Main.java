@@ -23,6 +23,8 @@ public class Main {
         System.out.println("Escolha uma opção digitando os números a seguir: ");
 
         int option = entry.nextInt();
+        entry.nextLine();
+
         switch (option){
             case 1:
                 List<User> users = userDao.all();

@@ -67,16 +67,53 @@ public class UserDataAccessObject {
         return null;
     }
 
-    public void update(User user){
-        try{
-            PreparedStatement sql = this.driver.prepareStatement("UPDATE FROM users SET name = ?, email = ?, password = ? WHERE id = ?");
-            sql.setString(1, user.getUserName());
-            sql.setString(2, user.getUserEmail());
-            sql.setString(3, user.getUserPassword());
-            sql.setInt(4, user.getUserId());
-            sql.execute();
+    public void update(User user) {
+        try {
+            StringBuilder sqlBuilder = new StringBuilder("UPDATE users SET");
+            List<Object> params = new ArrayList<>();
+            int paramCount = 1; // Começamos em 1 para o parâmetro do ID
+
+            if (user.getUserName() != null && !user.getUserName().isEmpty() && !user.getUserName().equals("0")) {
+                sqlBuilder.append(" name = ?,");
+                params.add(user.getUserName());
+                paramCount++;
+            }
+
+            if (user.getUserEmail() != null && !user.getUserEmail().isEmpty() && !user.getUserEmail().equals("0")) {
+                sqlBuilder.append(" email = ?,");
+                params.add(user.getUserEmail());
+                paramCount++;
+            }
+
+            if (user.getUserPassword() != null && !user.getUserPassword().isEmpty() && !user.getUserPassword().equals("0")) {
+                sqlBuilder.append(" password = ?,");
+                params.add(user.getUserPassword());
+                paramCount++;
+            }
+
+            // Remove a vírgula extra no final, se houver
+            if (sqlBuilder.charAt(sqlBuilder.length() - 1) == ',') {
+                sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
+            }
+
+            if (paramCount > 1) { // Verifica se há algum atributo para atualizar (além do ID)
+                sqlBuilder.append(" WHERE id = ?");
+                params.add(user.getUserId());
+
+                PreparedStatement sql = this.driver.prepareStatement(sqlBuilder.toString());
+
+                // Define os parâmetros na consulta
+                for (int i = 0; i < paramCount; i++) {
+                    sql.setObject(i + 1, params.get(i));
+                }
+
+                sql.execute();
+            } else {
+                System.out.println("Nenhum atributo válido para atualizar.");
+            }
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
     }
+
 }

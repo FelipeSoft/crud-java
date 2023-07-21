@@ -44,16 +44,14 @@ public class Main {
                 }
                 break;
             case 3:
-                Scanner no = new Scanner(System.in);
-
                 System.out.println("Informe o nome do usuário: ");
-                String userName = no.nextLine();
+                String userName = entry.nextLine();
 
                 System.out.println("Informe o email do usuário: ");
-                String userEmail = no.nextLine();
+                String userEmail = entry.nextLine();
 
                 System.out.println("Informe a senha do usuário: ");
-                String userPassword = no.nextLine();
+                String userPassword = entry.nextLine();
 
                 User newUser = new User();
                 newUser.setUserName(userName);
@@ -64,20 +62,20 @@ public class Main {
                 System.out.println("Usuário adicionado com sucesso!");
                 break;
             case 4:
-                Scanner updateScanner = new Scanner(System.in);
-                System.out.println("As informações que não deseja atualizar digite 0:");
+                System.out.println("As informações que não deseja atualizar digite 0 (Lembre-se, precisamos OBRIGATORIAMENTE do ID do usuário):");
 
                 System.out.println("Digite o id do usuário: ");
-                int updateId = updateScanner.nextInt();
+                int updateId = entry.nextInt();
+                entry.nextLine();
 
                 System.out.println("Digite o novo nome do usuário: ");
-                String updateName = updateScanner.nextLine();
+                String updateName = entry.nextLine();
 
                 System.out.println("Digite o novo email do usuário: ");
-                String updateEmail = updateScanner.nextLine();
+                String updateEmail = entry.nextLine();
 
                 System.out.println("Digite a nova senha do usuário: ");
-                String updatePassword = updateScanner.nextLine();
+                String updatePassword = entry.nextLine();
 
                 User updateUser = new User();
                 updateUser.setUserId(updateId);

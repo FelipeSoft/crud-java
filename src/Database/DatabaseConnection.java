@@ -8,7 +8,7 @@ public class DatabaseConnection {
     public Connection connect(){
         Connection connection = null;
         try{
-            String url = "jdbc:mysql://localhost:3306/crud_database?user=root&password=aluno123";
+            String url = "jdbc:mysql://localhost:3306/crud_database?user=root&password=root";
             connection = DriverManager.getConnection(url);
         } catch (Exception error){
             JOptionPane.showMessageDialog(null, "Database.DatabaseConnection: " + error.getMessage());
